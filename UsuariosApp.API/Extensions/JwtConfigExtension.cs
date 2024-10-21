@@ -19,10 +19,6 @@ namespace UsuariosApp.API.Extensions
 
             services.AddSingleton(jwtSettings);
 
-            services.AddDbContext<DataContext>();
-
-            services.AddTransient<UsuarioService>();
-
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

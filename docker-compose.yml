@@ -1,0 +1,23 @@
+services:
+
+  sqlserver_usuariosapp:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_usuariosapp
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Coti2024!
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_usuariosapp:/var/opt/mssql
+    networks:
+      - mynetwork    
+
+volumes:
+  sqlserver_usuariosapp:
+
+networks:
+  mynetwork:
+    driver: bridge
+
+

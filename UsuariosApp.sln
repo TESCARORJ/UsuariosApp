@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosApp.API", "UsuariosApp.API\UsuariosApp.API.csproj", "{86D11FE6-E6B2-4C00-B0FF-5D535AA0D232}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsuariosApp.API", "UsuariosApp.API\UsuariosApp.API.csproj", "{86D11FE6-E6B2-4C00-B0FF-5D535AA0D232}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{575B3AF3-458F-4A1B-9714-025C5811FD78}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosApp.Tests", "UsuariosApp.Tests\UsuariosApp.Tests.csproj", "{F579E3BA-6205-43E8-9831-1D419663B5BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,10 @@ Global
 		{86D11FE6-E6B2-4C00-B0FF-5D535AA0D232}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86D11FE6-E6B2-4C00-B0FF-5D535AA0D232}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86D11FE6-E6B2-4C00-B0FF-5D535AA0D232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F579E3BA-6205-43E8-9831-1D419663B5BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F579E3BA-6205-43E8-9831-1D419663B5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F579E3BA-6205-43E8-9831-1D419663B5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F579E3BA-6205-43E8-9831-1D419663B5BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
