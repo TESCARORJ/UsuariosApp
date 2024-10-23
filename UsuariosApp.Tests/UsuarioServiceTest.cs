@@ -1,6 +1,4 @@
-﻿
-
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -77,7 +75,7 @@ namespace UsuariosApp.Tests
             var criarUsuarioDto = new CriarUsuarioRequestDto
             {
                 Nome = "Nome Teste",
-                Email = "email-2@exemplo.com",
+                Email = "email-auth@exemplo.com",
                 Senha = "senha123"
             };
 
@@ -86,7 +84,7 @@ namespace UsuariosApp.Tests
 
             var autenticarDto = new AutenticarUsuarioRequestDto
             {
-                Email = "email-2@exemplo.com",
+                Email = "email-auth@exemplo.com",
                 Senha = "senha123"
             };
 
@@ -102,7 +100,43 @@ namespace UsuariosApp.Tests
             result.RefreshToken.Should().NotBeNullOrEmpty();
         }
 
+        [Fact]
+        public async Task RefreshTokenAsync_RefreshToken_Valido_Deve_Retornar_Novo_AccessToken()
+        {
+            // Arrange
+            var criarUsuarioDto = new CriarUsuarioRequestDto
+            {
+                Nome = "Nome Teste",
+                Email = "email-refreshtoken@exemplo.com",
+                Senha = "senha123"
+            };
+
+            // Adicionar um usuário válido ao banco de dados
+            await _usuarioService.CriarAsync(criarUsuarioDto);
+
+            var autenticarDto = new AutenticarUsuarioRequestDto
+            {
+                Email = "email-refreshtoken@exemplo.com",
+                Senha = "senha123"
+            };
+
+            // Autenticar o usuário para obter tokens
+            var authResult = await _usuarioService.AutenticarAsync(autenticarDto);
+
+            // Act - Usar o refresh token para obter um novo access token
+            var refreshTokenResult = await _usuarioService.RefreshTokenAsync(authResult.RefreshToken);
+
+            // Assert
+            refreshTokenResult.Should().NotBeNull();
+            refreshTokenResult.Should().BeOfType<AutenticarUsuarioResponseDto>();
+            refreshTokenResult.Email.Should().Be(criarUsuarioDto.Email);
+            refreshTokenResult.Nome.Should().Be(criarUsuarioDto.Nome);
+            refreshTokenResult.AccessToken.Should().NotBeNullOrEmpty();
+            refreshTokenResult.RefreshToken.Should().NotBeNullOrEmpty();
+            refreshTokenResult.AccessToken.Should().NotBeNullOrEmpty();
+        }
     }
 }
+
 
 
